@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Scheduler</title>
+
+	<!-- Reset -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+
+	<!-- Styling -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- jQuery CDN -->
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+	  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+	  crossorigin="anonymous"></script>
+
+	<!-- JavaScript -->
+	<script type="text/javascript" src="./assets/javascript/app.js"></script>
+
+	<!-- moment.js CDN -->
+	<script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+
+	<!-- Viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="container pageWrapper">
+		<!-- Header Div -->
+		<header>
+			<div class="container">
+				<div class="jumbotron myHeader">
+					<h1>Train Scheduler</h1>
+				</div>
+			</div>
+		</header>
+		<div class="container bodyContent">
+
+			<div class="row pageRow">
+			
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+					<img src="./assets/images/background.jpeg" id="background" class="img-rounded"></div>
+			
+				</div>
+
+			<div class="row pageRow">
+
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 scheduleBoard">
+
+					<div class="panel panel-primary">
+
+						<div class="panel-heading">
+							<h4>Train Schedule</h4>
+						</div>
+						
+						<div class="panel-body">
+
+							<table class="table table-hover table-responsive" id="boardTable">
+							
+								<thead>
+									<tr>
+										<th>Train Name</th>
+										<th>Train Number</th>
+										<th>Destination</th>
+										<th>Frequency (in mins.)</th>
+										<th>Next Arrival (HHMM)</th>
+										<th>Minutes Away</th>
+									</tr>
+								</thead>
+
+								<tbody id="boardText">
+								</tbody>
+
+							</table>
+
+						</div>
+
+					</div>
+
+				</div>
+				
+				<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+					<div class="panel panel-primary">
+
+						<div class="panel-heading">
+							<h4>Add Train</h4>
+						</div>
+
+						<div class="panel-body">
+					
+							<form>
+								<div class="form-group">
+									<label for="trainName">Train Name</label>
+									<input type="text" class="formControl" id="nameInput" placeholder="Enter a Train">
+								</div>
+
+								<div class="form-group">
+									<label for="trainNumber">Train Number</label>
+									<input type="number" class="formControl" id="numberInput" placeholder="Enter a Train ID Number">
+								</div>
+
+								<div class="form-group">
+									<label for="destForm">Destination</label>
+									<input type="text" class="formControl" id="destInput" placeholder="City, State">
+								</div>
+
+								<div class="form-group">
+									<label for="firstTrain">First Train Time (HHMM 24 Hour Format)</label>
+									<input type="number" class="formControl" id="timeInput" placeholder="eg. 1430" onkeyup="if(this.value > 2400){this.value=''; alert('Enter a valid time between 0000 and 2400');}">
+								</div>
+
+								<div class="form-group">
+									<label for="freqForm">Frequency (in mins.)</label>
+									<input type="number" class="formControl" id="freqInput" placeholder="eg. 30 minutes">
+								</div>
+							</form>
+
+							<button class="btn btn-primary submitInput">
+								Submit
+							</button>
+
+							<button class="btn btn-secondary resetInput">
+								Reset
+							</button>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>	
+
+		</div>
+
+	</div>
+</body>
+</html>
