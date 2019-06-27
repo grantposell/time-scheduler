@@ -1,8 +1,15 @@
+// Firebase App (the core Firebase SDK) is always required and
+// must be listed before other Firebase SDKs
+import * as firebase from "firebase/app";
+// Add the Firebase products that you want to use
+import "firebase/auth";
+import "firebase/firestore";
+
 $(document).ready(function () {
 
 	//Firebase link
 
-	var config = {
+	var firebaseConfig = {
 		apiKey: "AIzaSyDBVHK6LLq2ro44dsY6I2ZAwDY0PCYxb98",
 		authDomain: "time-schedule-abaa3.firebaseapp.com",
 		databaseURL: "https://time-schedule-abaa3.firebaseio.com",
@@ -12,7 +19,7 @@ $(document).ready(function () {
 		appId: "1:535127508496:web:db7ac2c7be6059c4"
 	};
 
-	firebase.initializeApp(config);
+	firebase.initializeApp(firebaseConfig);
 
 	var database = firebase.database();
 
