@@ -1,13 +1,4 @@
-// Firebase App (the core Firebase SDK) is always required and
-// must be listed before other Firebase SDKs
-import * as firebase from "firebase/app";
-// Add the Firebase products that you want to use
-import "firebase/auth";
-import "firebase/firestore";
-
 $(document).ready(function () {
-
-	//Firebase link
 
 	var firebaseConfig = {
 		apiKey: "AIzaSyDBVHK6LLq2ro44dsY6I2ZAwDY0PCYxb98",
