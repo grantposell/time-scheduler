@@ -1,145 +1,219 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Train Scheduler</title>
+    <title>Train Scheduler</title>
 
-	<!-- Reset -->
-	<link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+    <!-- Reset -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
 
-	<!-- Styling -->
-	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <!-- Styling -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 
-	<!-- Bootstrap CDN -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<!-- jQuery CDN -->
-	<script src="https://code.jquery.com/jquery-3.2.1.js"
-	  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-      crossorigin="anonymous"></script>
-    
-      <!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 
     <!-- moment.js CDN -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
-    
-	<!-- JavaScript -->
-	<script type="text/javascript" src="./app.js"></script>
 
-	<!-- Viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- JavaScript -->
+    <script type="text/javascript" src="./app.js"></script>
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-	<div class="container pageWrapper">
-		<!-- Header Div -->
-		<header>
-			<div class="container">
-				<div class="jumbotron myHeader">
-					<h1>Train Scheduler</h1>
-				</div>
-			</div>
-		</header>
-		<div class="container bodyContent">
+    <div class="container pageWrapper">
+        <!-- Header Div -->
+        <header>
+            <div class="container">
+                <div class="jumbotron myHeader">
+                    <h1>Time Scheduler</h1>
+                </div>
+            </div>
+        </header>
+        <div class="container bodyContent">
 
-			<div class="row pageRow">
-			
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row pageRow">
 
-					<img src="./assets/images/background.jpeg" id="background" class="img-rounded"></div>
-			
-				</div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 scheduleBoard">
 
-			<div class="row pageRow">
+                    <div class="panel panel-primary">
 
-				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 scheduleBoard">
+                        <div class="panel-heading">
+                            <h4>Time Scheduler</h4>
+                        </div>
 
-					<div class="panel panel-primary">
+                        <div class="panel-body">
 
-						<div class="panel-heading">
-							<h4>Train Schedule</h4>
-						</div>
-						
-						<div class="panel-body">
+                            <table class="table table-hover table-responsive" id="boardTable">
 
-							<table class="table table-hover table-responsive" id="boardTable">
-							
-								<thead>
-									<tr>
-										<th>Train Name</th>
-										<th>Train Number</th>
-										<th>Destination</th>
-										<th>Frequency (in mins.)</th>
-										<th>Next Arrival (HHMM)</th>
-										<th>Minutes Away</th>
-									</tr>
-								</thead>
+                                <thead>
+                                    <tr>
+                                        <th>Driver</th>
+                                        <th>Driver ID</th>
+                                        <th>Destination</th>
+                                        <th>Frequency (in mins.)</th>
+                                        <th>Next Arrival (HHMM)</th>
+                                        <th>Minutes Away</th>
+                                    </tr>
+                                </thead>
 
-								<tbody id="boardText">
-								</tbody>
+                                <tbody id="boardText">
+                                </tbody>
 
-							</table>
+                            </table>
 
-						</div>
+                        </div>
 
-					</div>
+                    </div>
 
-				</div>
-				
-				<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                </div>
 
-					<div class="panel panel-primary">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
 
-						<div class="panel-heading">
-							<h4>Add Train</h4>
-						</div>
+                    <div class="panel panel-primary">
 
-						<div class="panel-body">
-					
-							<form>
-								<div class="form-group">
-									<label for="trainName">Train Name</label>
-									<input type="text" class="formControl" id="nameInput" placeholder="Enter a Train">
-								</div>
+                        <div class="panel-heading">
+                            <h4>Add Driver to Queue</h4>
+                        </div>
 
-								<div class="form-group">
-									<label for="trainNumber">Train Number</label>
-									<input type="number" class="formControl" id="numberInput" placeholder="Enter a Train ID Number">
-								</div>
+                        <div class="panel-body">
 
-								<div class="form-group">
-									<label for="destForm">Destination</label>
-									<input type="text" class="formControl" id="destInput" placeholder="City, State">
-								</div>
+                            <form>
+                                <div class="form-group">
+                                    <label for="trainName">Driver</label>
+                                    <input type="text" class="formControl" id="nameInput" placeholder="Enter a Driver">
+                                </div>
 
-								<div class="form-group">
-									<label for="firstTrain">First Train Time (HHMM 24 Hour Format)</label>
-									<input type="number" class="formControl" id="timeInput" placeholder="eg. 1430" onkeyup="if(this.value > 2400){this.value=''; alert('Enter a valid time between 0000 and 2400');}">
-								</div>
+                                <div class="form-group">
+                                    <label for="trainNumber">Driver ID</label>
+                                    <input type="number" class="formControl" id="numberInput"
+                                        placeholder="Enter a Driver ID Number">
+                                </div>
 
-								<div class="form-group">
-									<label for="freqForm">Frequency (in mins.)</label>
-									<input type="number" class="formControl" id="freqInput" placeholder="eg. 30 minutes">
-								</div>
-							</form>
+                                <div class="form-group">
+                                    <label for="destForm">Destination</label>
+                                    <input type="text" class="formControl" id="destInput" placeholder="City, State">
+                                </div>
 
-							<button class="btn btn-primary submitInput">
-								Submit
-							</button>
+                                <div class="form-group">
+                                    <label for="firstTrain">First Driver Time (HHMM 24 Hour Format)</label>
+                                    <input type="number" class="formControl" id="timeInput" placeholder="eg. 1430"
+                                        onkeyup="if(this.value > 2400){this.value=''; alert('Enter a valid time between 0000 and 2400');}">
+                                </div>
 
-							<button class="btn btn-secondary resetInput">
-								Reset
-							</button>
+                                <div class="form-group">
+                                    <label for="freqForm">Frequency (in mins.)</label>
+                                    <input type="number" class="formControl" id="freqInput"
+                                        placeholder="eg. 30 minutes">
+                                </div>
+                            </form>
 
-						</div>
+                            <button class="btn btn-primary submitInput">
+                                Submit
+                            </button>
 
-					</div>
+                            <button class="btn btn-secondary resetInput">
+                                Reset
+                            </button>
 
-				</div>
+                        </div>
 
-			</div>	
+                    </div>
 
-		</div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 scheduleBoard">
+                    <div class="panel panel-primary">
 
-	</div>
+                        <div class="panel-heading">
+                            <h4>Add Driver to Queue</h4>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <table class="table table-hover table-responsive" id="boardTable">
+
+                                <thead>
+                                    <tr>
+                                        <th>Driver</th>
+                                        <th>Driver ID</th>
+                                        <th>Destination</th>
+                                        <th>Minutes Away</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="boardText">
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+                    <div class="panel panel-primary">
+
+                        <div class="panel-heading">
+                            <h4>Simulated Queue</h4>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <form>
+                                <div class="form-group">
+                                    <label for="trainName">Driver</label>
+                                    <input type="text" class="formControl" id="nameInput" placeholder="Enter a Driver">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="trainNumber">Driver ID</label>
+                                    <input type="number" class="formControl" id="numberInput"
+                                        placeholder="Enter a Driver ID Number">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="destForm">Destination</label>
+                                    <input type="text" class="formControl" id="destInput" placeholder="City, State">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="firstTrain">First Driver Time (HHMM 24 Hour Format)</label>
+                                    <input type="number" class="formControl" id="timeInput" placeholder="eg. 1430"
+                                        onkeyup="if(this.value > 2400){this.value=''; alert('Enter a valid time between 0000 and 2400');}">
+                                </div>
+                            </form>
+
+                            <button class="btn btn-primary submitInput">
+                                Submit
+                            </button>
+
+                            <button class="btn btn-secondary resetInput">
+                                Reset
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </body>
+
 </html>

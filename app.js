@@ -130,5 +130,5 @@ $(document).ready(function () {
 
 	//auto refresh per 1 minute passed
 	//updates the train data upon refresh
-	setInterval("window.location.reload()", 60000);
+	setInterval("window.location.reload()", 30000);
 });
