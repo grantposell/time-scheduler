@@ -128,8 +128,16 @@ $(document).ready(function () {
 		location.reload();
 	});
 
+	$(".submitDistanceInput").on("click", function (event) {
+		var startingLocation = $("#startingLocation").val().trim();
+
+		var endingLocation = $("#endingLocation").val().trim();
+		
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + sport + "&limit=10&api_key=uinmGi53p3SpdSlN664gKCO1L2Id2Tr2"
+
+	});
+
 	//auto refresh per 1 minute passed
 	//updates the train data upon refresh
 	setInterval("window.location.reload()", 30000);
-	
 });
