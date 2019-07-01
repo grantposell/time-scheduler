@@ -131,9 +131,13 @@ $(document).ready(function () {
 	$(".submitDistanceInput").on("click", function (event) {
 		var startingLocation = $("#startingLocation").val().trim();
 
+		var startStateAb = $("#startStateAb").val().trim();
+
 		var endingLocation = $("#endingLocation").val().trim();
+
+		var endingStateAb = $("#endingStateAb").val().trim();
 		
-		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + sport + "&limit=10&api_key=uinmGi53p3SpdSlN664gKCO1L2Id2Tr2"
+		var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + startingLocation + "+" + startStateAb + "&destinations=" + endingLocation + "+" + endingStateAb
 
 	});
 
