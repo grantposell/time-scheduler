@@ -129,18 +129,18 @@ $(document).ready(function () {
 	});
 
 	$(".submitDistanceInput").on("click", function (event) {
-		var startingLocation = $("#startingLocation").val().trim();
+		var startingCity = $("#startingCity").val().trim();
 
-		var startStateAb = $("#startStateAb").val().trim();
+		var startingState = $("#startingState").val().trim();
 
-		var endingLocation = $("#endingLocation").val().trim();
+		var endingCity  = $("#endingCity").val().trim();
 
-		var endingStateAb = $("#endingStateAb").val().trim();
+		var endingState = $("#endingState").val().trim();
 		
 		displayMapTime(time)
 	});
 	function displayMapTime(time) {
-		var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + startingLocation + "+" + startStateAb + "&destinations=" + endingLocation + "+" + endingStateAb + "&depature_time=now&mode=driving&key=";
+		var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + startingCity + "+" + startingState + "&destinations=" + endingCity + "+" + endingState + "&depature_time=now&mode=driving&key=";
 		
 		$.ajax({
 			url: queryURL,
