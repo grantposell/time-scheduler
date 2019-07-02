@@ -137,9 +137,18 @@ $(document).ready(function () {
 
 		var endingStateAb = $("#endingStateAb").val().trim();
 		
-		var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + startingLocation + "+" + startStateAb + "&destinations=" + endingLocation + "+" + endingStateAb
-
+		displayMapTime(time)
 	});
+	function displayMapTime(time) {
+		var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + startingLocation + "+" + startStateAb + "&destinations=" + endingLocation + "+" + endingStateAb + "&depature_time=now&mode=driving&key=";
+		
+		$.ajax({
+			url: queryURL,
+			method: "GET"
+		  }).then(function (response) {
+		  
+		});
+	};
 
 	//auto refresh per 1 minute passed
 	//updates the train data upon refresh
