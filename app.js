@@ -148,7 +148,7 @@ $(document).ready(function () {
 				'destinations': 'San Francisco',
 				'mode': 'driving',
 				'depature_time': 'now',
-				'key': 'AIzaSyBxW5bnsbb7ySgxd0xc-77_amm3wmjHjus'
+				'key': ''
 
 			})
 		}).then((res) => res.json())
