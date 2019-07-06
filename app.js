@@ -128,29 +128,37 @@ $(document).ready(function () {
 		location.reload();
 	});
 
-	// $(".submitDistanceInput").on("click", function (event) {
-	// 	var startingCity = $("#startingCity").val().trim();
+	$(".submitDistanceInput").on("click", function (event) {
+		var startingCity = $("#startingCity").val().trim();
 
-	// 	var startingState = $("#startingState").val().trim();
+		var startingState = $("#startingState").val().trim();
 
-	// 	var endingCity  = $("#endingCity").val().trim();
+		var endingCity  = $("#endingCity").val().trim();
 
-	// 	var endingState = $("#endingState").val().trim();
+		var endingState = $("#endingState").val().trim();
 		
-	// 	displayMapTime(time)
-	// });
-	function displayMapTime(time) {
-		var queryURL = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Seattle&destinations=San+Francisco&mode=driving&depature_time=now&key=";
-		$.ajax({
-			url: queryURL,
-			method: "GET"
-		  }).then(function (response) {
-			for (var i = 0 ; i < response.data.length; i++){
-			var distance = response.data.rows.elements
-			$("#googlemaps").prepend(distance);
-			}
-		});
-	};
+	});
+	const api = 'https://maps.googleapis.com/maps/api/distancematrix/json?';
+	function timeToDestination() {
+		fetch(api, {
+			headers: new Headers({
+				//In a more developed application I would put this in a dotenv file
+				'units': 'imperial',
+				'origins': 'Seattle',
+				'destinations': 'San Francisco',
+				'mode': 'driving',
+				'depature_time': 'now',
+				'key': 'AIzaSyBxW5bnsbb7ySgxd0xc-77_amm3wmjHjus'
+
+			})
+		}).then((res) => res.json())
+			.then((data) => {
+				console.log(data)
+			});
+		}
+		timeToDestination();
+
+
 	
 	// document.getElementById('googlemaps').innerHTML = queryURL
 	//auto refresh per 1 minute passed
