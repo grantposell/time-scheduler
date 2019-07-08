@@ -133,33 +133,44 @@ $(document).ready(function () {
 
 		var startingState = $("#startingState").val().trim();
 
-		var endingCity  = $("#endingCity").val().trim();
+		var endingCity = $("#endingCity").val().trim();
 
 		var endingState = $("#endingState").val().trim();
-		
+
 	});
-	const api = 'https://maps.googleapis.com/maps/api/distancematrix/json?';
-	function timeToDestination() {
-		fetch(api, {
-			headers: new Headers({
-				//In a more developed application I would put this in a dotenv file
-				'units': 'imperial',
-				'origins': 'Seattle',
-				'destinations': 'San Francisco',
-				'mode': 'driving',
-				'depature_time': 'now',
-				'key': ''
+	// const api = 'https://maps.googleapis.com/maps/api/distancematrix/json?';
+	// function timeToDestination() {
+	// 	fetch(api, {
+	// 		headers: new Headers({
+	// 			//In a more developed application I would put this in a dotenv file
+	// 			'units': 'imperial',
+	// 			'origins': 'Seattle',
+	// 			'destinations': 'San Francisco',
+	// 			'mode': 'driving',
+	// 			'depature_time': 'now',
+	// 			'key': ''
 
-			})
-		}).then((res) => res.json())
-			.then((data) => {
-				console.log(data)
-			});
-		}
-		timeToDestination();
+	// 		})
+	// 	}).then((res) => res.json())
+	// 		.then((data) => {
+	// 			console.log(data)
+	// 		});
+	// }
+	// timeToDestination();
+
+	window.onload = function () {
+		var geolocator = window.navigator.geolocation;
+		var posOptions = { enableHighAccurace: true, timeout: 45000 };
+		geolocator.getCurrentPosition(successPosition, errorPosition, posOptions);
+	}
+	function successPosition(pos) {
+		alert(pos);
+	}
+	function errorPosition(err) {
+		alert(err);
+	}
 
 
-	
 	// document.getElementById('googlemaps').innerHTML = queryURL
 	//auto refresh per 1 minute passed
 	//updates the train data upon refresh
