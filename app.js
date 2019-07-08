@@ -158,17 +158,22 @@ $(document).ready(function () {
 	// }
 	// timeToDestination();
 
-	window.onload = function () {
+	function loadGeo() {
 		var geolocator = window.navigator.geolocation;
 		var posOptions = { enableHighAccurace: true, timeout: 45000 };
 		geolocator.getCurrentPosition(successPosition, errorPosition, posOptions);
 	}
 	function successPosition(pos) {
-		alert(pos);
+		var sp = document.createElement("p");
+		sp.innerText = "Latitude: " + pos.coords.latitude + " Longitude: " + pos.coords.longitude;
+		document.getElementById("geoResults").appendChild(sp);
 	}
 	function errorPosition(err) {
-		alert(err);
+		var sp = document.createElement("p");
+		sp.innerText = "error: " + err.message; + " code: " + err.code;
+		document.getElementById("geoResults").appendChild(sp);
 	}
+	loadGeo()
 
 
 	// document.getElementById('googlemaps').innerHTML = queryURL
