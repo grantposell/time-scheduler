@@ -160,12 +160,14 @@ $(document).ready(function () {
 
 	function loadGeo() {
 		var geolocator = window.navigator.geolocation;
-		var posOptions = { enableHighAccurace: true, timeout: 45000 };
+		var posOptions = { enableHighAccurace: true};
 		geolocator.getCurrentPosition(successPosition, errorPosition, posOptions);
 	}
 	function successPosition(pos) {
 		var sp = document.createElement("p");
-		sp.innerText = "Latitude: " + pos.coords.latitude + " Longitude: " + pos.coords.longitude;
+		var latitude = pos.coords.latitude;
+		var longitude = pos.coords.longitude;
+		sp.innerText = "Latitude: " + latitude + " Longitude: " + longitude;
 		document.getElementById("geoResults").appendChild(sp);
 	}
 	function errorPosition(err) {
